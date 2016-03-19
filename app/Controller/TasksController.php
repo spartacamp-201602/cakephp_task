@@ -25,7 +25,20 @@ class TasksController extends AppController
 
     public function create()
     {
-
+        // POSTメソッドのチェック
+        if ($this->request->is('post'))
+        {
+            //送られてきたデータを保存
+            if ($this->Task->save($this->request->data))
+            {
+                $this->Flash->success('タスク'.$this->Task->id.'登録しました');
+                return $this->redirect(array('action' => 'index'));
+            }
+            else
+            {
+                $this->Flash->error('登録できませんでした...');
+            }
+        }
     }
 
     public function done($id)
