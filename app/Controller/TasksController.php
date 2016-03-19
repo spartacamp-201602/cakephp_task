@@ -6,7 +6,7 @@ class TasksController extends AppController
 
     public $helpers = array('Html', 'Form');
 
-    public $conmponents = array('Flash');
+    public $components = array('Flash');
 
     public function index()
     {
@@ -30,16 +30,15 @@ class TasksController extends AppController
 
     public function done($id)
     {
-        if ($this->request->is('get'))
-        {
-            throw new MethodNotAllowedException();
-        }
-        if ($thi->Post->done($id))
-        {
-            $this->Flash->success('タスク'.$id.'を完了しました');
-            //リダイレクト
-            return $this->redirect(array('action' => 'index'));
-        }
+        $this->Task->id = $id;
+        //saveFieldは単一のレコードのカラムを更新
+        $this->Task->saveField('status', 1);
+
+        $msg = sprintf('タスク %s を完了しました', $id);
+
+        $this->Flash->success($msg);
+
+        return $this->redirect(array('action' => 'index'));
     }
 
 }
