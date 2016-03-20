@@ -53,19 +53,22 @@ class TasksController extends AppController
 
     public function edit($id)
     {
-        $options = array(
-            'conditions' => array(
-                'Task.id' => $id,
-                'Task.status' => 0
-                )
-            );
+        // $options = array(
+        //     'conditions' => array(
+        //         'Task.id' => $id,
+        //         'Task.status' => 0
+        //         )
+        //     );
 
         //指定されたタスクのデータ取得
-        $task = $this->Task->find('first', $options);
+        // $task = $this->Task->find('first', $options);
+        $task = $this->Task->findById($id);
+        // sql: select * from tasks where id = $id
 
         // debug($task);
 
         //データが見つからない場合はリダイレクト
+        //レコードが見つかったか判定
         if (!$task)
         {
             $this->Flash->error('タスクが見つかりません');
@@ -75,6 +78,8 @@ class TasksController extends AppController
         //フォームから送信された場合には更新処理を行う
         if ($this->request->is(array('post', 'put')))
         {
+            //これがないと新しいタスクになってしまう
+            //更新されない
             $this->Task->id = $id;
 
             if ($this->Task->save($this->request->data))
@@ -89,7 +94,12 @@ class TasksController extends AppController
         }
         else
         {
+            //あらかじめフォームに値をセットする
+            //GETメソッドできたら URL直打ちできたら
+            // debug($this->request->data);
             $this->request->data = $task;
+            // debug($this->request->data);
+            // exit;
         }
     }
 

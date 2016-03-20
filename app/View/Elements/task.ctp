@@ -26,7 +26,7 @@
             </td>
             <td><?php echo $task['Task']['due_date']; ?></td>
             <td><?php echo $task['Task']['created']; ?></td>
-            <td><?php echo $this->Html->link('このタスクを完了する', '/Tasks/done/'.$task['Task']['id']); ?>
+            <td><?php echo $this->Html->link('タスクを完了', '/Tasks/done/'.$task['Task']['id']); ?>
                 <br><?php echo $this->Html->link('タスク編集',  '/tasks/edit/'.$task['Task']['id']); ?>
             </td>
         </tr>
