@@ -6,7 +6,7 @@ class TasksController extends AppController
 
     public $helpers = array('Html', 'Form');
     //意味は一緒
-    public $helpers = ['Html', 'Form'];
+    // public $helpers = ['Html', 'Form'];
 
     public $components = array('Flash');
 

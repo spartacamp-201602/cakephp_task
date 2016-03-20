@@ -2,6 +2,9 @@
 
 class Task extends AppModel
 {
+
+    public $hasMany = array('Note');
+
     //この中にバリデーションを書く
     public $validate = array(
         //ここにルールを書いていく
