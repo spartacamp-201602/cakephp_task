@@ -4,7 +4,7 @@ class TasksController extends AppController
 {
     // public $scaffold;
 
-    public $helpers = array('Html');
+    public $helpers = array('Html', 'Form');
 
     public $components = array('Flash');
 
@@ -29,6 +29,18 @@ class TasksController extends AppController
         $this->Flash->success($msg);
 
         return $this->redirect(array('action' => 'index'));
+    }
+
+    public function create()
+    {
+        if ($this->request->is('post'))
+        {
+            $this->Task->save($this->request->data);
+            $msg = sprintf('タスク $s を作成しました', $this->Task->id);
+
+            $this->Flash->success($msg);
+            $this->redirect(array('action' => 'index'));
+        }
     }
 
 }
