@@ -11,7 +11,7 @@
         <th>操作</th>
     </tr>
         <tr>
-            <td><?php echo $this->Html->link($task['Task']['id'], 'Tasks/view'.$task['Task']['id']); ?></td>
+            <td><?php echo $this->Html->link($task['Task']['id'], '/tasks/view'.$task['Task']['id']); ?></td>
             <td><?php echo $task['Task']['name']; ?>
             <p><strong>コメント一覧</strong></p>
             <?php foreach ($task['Note'] as $note) : ?>
@@ -26,7 +26,9 @@
             </td>
             <td><?php echo $task['Task']['due_date']; ?></td>
             <td><?php echo $task['Task']['created']; ?></td>
-            <td><?php echo $this->Html->link('このタスクを完了する', '/Tasks/done/'.$task['Task']['id']); ?></td>
+            <td><?php echo $this->Html->link('このタスクを完了する', '/Tasks/done/'.$task['Task']['id']); ?>
+                <br><?php echo $this->Html->link('タスク編集',  '/tasks/edit/'.$task['Task']['id']); ?>
+            </td>
         </tr>
 </table>
 </div>
