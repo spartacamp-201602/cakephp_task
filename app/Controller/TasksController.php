@@ -35,11 +35,17 @@ class TasksController extends AppController
     {
         if ($this->request->is('post'))
         {
-            $this->Task->save($this->request->data);
+            if ($this->Task->save($this->request->data))
+            {
             $msg = sprintf('タスク $s を作成しました', $this->Task->id);
 
             $this->Flash->success($msg);
             $this->redirect(array('action' => 'index'));
+            }
+            else
+            {
+                $this->Flash->error('保存できませんでした');
+            }
         }
     }
 
