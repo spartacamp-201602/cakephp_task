@@ -28,6 +28,7 @@
             <?php endforeach; ?>
             <br>
             <?php echo $this->Html->link('コメント追加', array('controller' => 'notes', 'action' => 'add')); ?>
+            <!-- <?php echo $this->Html->link('コメント追加', '/notes/add/') ; ?> -->
 
             </td>
             <td><?php echo $task['Task']['due_date']; ?></td>
